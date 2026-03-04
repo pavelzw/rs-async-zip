@@ -128,13 +128,13 @@ pub struct CentralDirectoryRecord {
 // https://github.com/Majored/rs-async-zip/blob/main/SPECIFICATION.md#4316
 #[derive(Debug)]
 pub struct EndOfCentralDirectoryHeader {
-    pub(crate) disk_num: u16,
-    pub(crate) start_cent_dir_disk: u16,
-    pub(crate) num_of_entries_disk: u16,
-    pub(crate) num_of_entries: u16,
-    pub(crate) size_cent_dir: u32,
-    pub(crate) cent_dir_offset: u32,
-    pub(crate) file_comm_length: u16,
+    pub disk_num: u16,
+    pub start_cent_dir_disk: u16,
+    pub num_of_entries_disk: u16,
+    pub num_of_entries: u16,
+    pub size_cent_dir: u32,
+    pub cent_dir_offset: u32,
+    pub file_comm_length: u16,
 }
 
 impl EndOfCentralDirectoryHeader {
