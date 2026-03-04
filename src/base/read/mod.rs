@@ -9,7 +9,7 @@ pub mod stream;
 
 pub mod cd;
 mod counting;
-pub(crate) mod io;
+pub mod io;
 
 use crate::ZipString;
 // Re-exported as part of the public API.
@@ -21,6 +21,7 @@ use crate::date::ZipDateTime;
 use crate::entry::{StoredZipEntry, ZipEntry};
 use crate::error::{Result, ZipError};
 use crate::file::ZipFile;
+use crate::spec::Compression;
 use crate::spec::attribute::AttributeCompatibility;
 use crate::spec::consts::LFH_LENGTH;
 use crate::spec::consts::{CDH_SIGNATURE, LFH_SIGNATURE, NON_ZIP64_MAX_SIZE, SIGNATURE_LENGTH, ZIP64_EOCDL_LENGTH};
@@ -30,7 +31,6 @@ use crate::spec::header::{
     CentralDirectoryRecord, EndOfCentralDirectoryHeader, ExtraField, LocalFileHeader,
     Zip64EndOfCentralDirectoryLocator, Zip64EndOfCentralDirectoryRecord, Zip64ExtendedInformationExtraField,
 };
-use crate::spec::Compression;
 use crate::string::StringEncoding;
 
 use crate::base::read::io::CombinedCentralDirectoryRecord;
@@ -41,7 +41,7 @@ use futures_lite::io::{AsyncRead, AsyncReadExt, AsyncSeek, AsyncSeekExt, BufRead
 /// The max buffer size used when parsing the central directory, equal to 20MiB.
 const MAX_CD_BUFFER_SIZE: usize = 20 * 1024 * 1024;
 
-pub(crate) async fn file<R>(mut reader: R) -> Result<ZipFile>
+pub async fn file<R>(mut reader: R) -> Result<ZipFile>
 where
     R: AsyncRead + AsyncSeek + Unpin,
 {
