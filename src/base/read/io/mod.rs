@@ -5,7 +5,7 @@ pub(crate) mod combined_record;
 pub(crate) mod compressed;
 pub(crate) mod entry;
 pub(crate) mod hashed;
-pub(crate) mod locator;
+pub mod locator;
 pub(crate) mod owned;
 
 pub use combined_record::CombinedCentralDirectoryRecord;
